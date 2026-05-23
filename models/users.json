@@ -1,0 +1,9 @@
+[
+  {
+    "username": "UserProx",
+    "email": "olubiyiabdullateef@gmail.com",
+    "password": "$2b$10$qk6bsXTx0m7xk9zpqTIhq.xUDoxbUn56qPdIfGlz5xyF4TmqsQbAS",
+    "refreshToken": "",
+    "roles": { "user": 2000 }
+  }
+]
