@@ -7,7 +7,8 @@ const path = require("path");
 const rootRouter = require("./routes/root");
 const registerApi = require("./routes/api/register");
 const loginAuthAPi = require("./routes/api/loginAuth");
-const userDashboard = require("./routes/api/User")
+const userDashboard = require("./routes/api/User");
+const PORT = process.env.PORT || 5000
 require("dotenv").config()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +28,6 @@ app.use("/user", userDashboard)
 app.use((req, res) => {
     res.end("Error 404 page not found")
 })
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log(`Server running at port ${PORT}`);
 });
