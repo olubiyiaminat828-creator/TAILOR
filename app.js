@@ -8,7 +8,6 @@ const rootRouter = require("./routes/root");
 const registerApi = require("./routes/api/register");
 const loginAuthAPi = require("./routes/api/loginAuth");
 const userDashboard = require("./routes/api/User");
-const PORT = process.env.PORT || 5000
 require("dotenv").config()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
