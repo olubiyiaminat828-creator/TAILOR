@@ -726,6 +726,14 @@
       .step-circle { width: 28px; height: 28px; font-size: .65rem; }
       .review-block { padding: 1.2rem; }
     }
+    .header-logo img {
+  height: clamp(44px, 8vw, 58px);
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.header-logo img:hover { transform: scale(1.06) rotate(-2deg); }
   </style>
 </head>
 <body>
@@ -737,13 +745,13 @@
   <!-- ── HEADER ── -->
   <header class="page-header">
     <a class="header-logo" href="index.html">
-      <div class="logo-mark">PHILLTOS<br>STITCHES</div>
+        <img src="/images/brand-logo.png" alt="Philltos Stitches">
       <div class="logo-text">
         <strong>PHILLTOS</strong>
         <span>Stitches</span>
       </div>
     </a>
-    <a class="header-back" href="index.html">Back to Home</a>
+    <a class="header-back" href="/">Back to Home</a>
   </header>
 
   <!-- ── LEFT INFO PANEL ── -->
