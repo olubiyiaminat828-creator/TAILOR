@@ -685,9 +685,134 @@ html { scroll-behavior: smooth; }
 }
 
 /* ─── RESPONSIVE ─── */
+
+/* Tablet landscape (≤1100px) */
+@media (max-width: 1100px) {
+  .hero-inner {
+    gap: 2.5rem;
+    padding: 4rem 2rem;
+  }
+  .frame-outer {
+    width: 340px;
+    height: 430px;
+  }
+  .hero-title {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+  }
+  .hero-title-italic {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+  }
+}
+
+/* Tablet portrait (≤900px) — stack layout, show visual */
 @media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
-  .hero-visual { display: none; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 4rem 1.8rem 6rem;
+    text-align: center;
+  }
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-body {
+    max-width: 100%;
+  }
+  .hero-divider {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-stats {
+    justify-content: center;
+    border-left: none;
+    padding-left: 0;
+    border-top: 2px solid var(--gold);
+    padding-top: 1.4rem;
+    gap: 2rem;
+  }
+  .hero-cta {
+    justify-content: center;
+  }
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+  }
+  .frame-outer {
+    width: 300px;
+    height: 380px;
+  }
+  .tag-float.tl { left: -10px; top: -14px; font-size: .55rem; }
+  .tag-float.br { right: -10px; bottom: -14px; font-size: .55rem; }
+  .diagonal-rule { display: none; }
+}
+
+/* Mobile (≤600px) */
+@media (max-width: 600px) {
+  .hero-inner {
+    padding: 3rem 1.2rem 5.5rem;
+    gap: 2.5rem;
+  }
+  .hero-title {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+  }
+  .hero-title-italic {
+    font-size: clamp(1.7rem, 8vw, 2.4rem);
+    margin-bottom: 1.2rem;
+  }
+  .hero-body {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  .hero-stats {
+    gap: 1.4rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .stat-number {
+    font-size: 1.9rem;
+  }
+  .badge {
+    font-size: .58rem;
+    padding: .4rem .9rem;
+    margin-bottom: 1.4rem;
+  }
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    text-align: center;
+    padding: .85rem 1.2rem;
+  }
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-visual {
+    display: none;
+  }
+  .scroll-hint {
+    bottom: 1.4rem;
+  }
+}
+
+/* Small mobile (≤380px) */
+@media (max-width: 380px) {
+  .hero-title {
+    font-size: 1.9rem;
+  }
+  .hero-title-italic {
+    font-size: 1.6rem;
+  }
+  .hero-stats {
+    gap: 1rem;
+  }
+  .stat-number {
+    font-size: 1.6rem;
+  }
+  .stat-label {
+    font-size: .58rem;
+  }
 }
 
 /* ── RESPONSIVE ── */
