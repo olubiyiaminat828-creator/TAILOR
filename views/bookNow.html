@@ -1,1279 +1,1698 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Book a Consultation — Philltos Stitches</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a Consultation — Philltos Stitches</title>
 
-  <!-- AOS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+    <!-- AOS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet"
+    />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    /* ── RESET & ROOT ── */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    <style>
+      /* ── RESET & ROOT ── */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    :root {
-      --black:      #0a0b0d;
-      --dark:       #111318;
-      --dark-mid:   #181c22;
-      --dark-card:  #13161b;
-      --gold:       #c9a84c;
-      --gold-lt:    #e8c96a;
-      --gold-dim:   rgba(201,168,76,.18);
-      --gold-glow:  rgba(201,168,76,.08);
-      --teal:       #2a9d8f;
-      --teal-dim:   rgba(42,157,143,.15);
-      --white:      #f5f0e8;
-      --grey:       #8a8a8a;
-      --error:      #e05c5c;
-      --success:    #4caf7d;
-    }
+      :root {
+        --black: #0a0b0d;
+        --dark: #111318;
+        --dark-mid: #181c22;
+        --dark-card: #13161b;
+        --gold: #c9a84c;
+        --gold-lt: #e8c96a;
+        --gold-dim: rgba(201, 168, 76, 0.18);
+        --gold-glow: rgba(201, 168, 76, 0.08);
+        --teal: #2a9d8f;
+        --teal-dim: rgba(42, 157, 143, 0.15);
+        --white: #f5f0e8;
+        --grey: #8a8a8a;
+        --error: #e05c5c;
+        --success: #4caf7d;
+      }
 
-    html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth;
+      }
 
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: 'Raleway', sans-serif;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
+      body {
+        background: var(--black);
+        color: var(--white);
+        font-family: "Raleway", sans-serif;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        BACKGROUND ATMOSPHERE
        ══════════════════════════════ */
-    .page-bg {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    }
-    .page-bg::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(201,168,76,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,168,76,.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-    .page-bg::after {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse at 15% 20%, rgba(42,157,143,.1) 0%, transparent 50%),
-        radial-gradient(ellipse at 85% 75%, rgba(201,168,76,.08) 0%, transparent 50%);
-    }
+      .page-bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .page-bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(201, 168, 76, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(201, 168, 76, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+      .page-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 15% 20%,
+            rgba(42, 157, 143, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 85% 75%,
+            rgba(201, 168, 76, 0.08) 0%,
+            transparent 50%
+          );
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        PAGE WRAPPER
        ══════════════════════════════ */
-    .page-wrap {
-      position: relative; z-index: 1;
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto 1fr;
-    }
+      .page-wrap {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr;
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        TOP HEADER STRIP
        ══════════════════════════════ */
-    .page-header {
-      grid-column: 1 / -1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.6rem 3rem;
-      border-bottom: 1px solid rgba(201,168,76,.1);
-      background: rgba(10,11,13,.7);
-      backdrop-filter: blur(12px);
-      position: sticky; top: 0; z-index: 100;
-    }
-    .header-logo {
-      display: flex; align-items: center; gap: .8rem;
-      text-decoration: none;
-    }
-    .logo-mark {
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      border: 2px solid var(--gold);
-      display: grid; place-items: center;
-      font-family: 'Playfair Display', serif;
-      font-size: .5rem; color: var(--gold);
-      letter-spacing: .04em; text-align: center; line-height: 1.2;
-    }
-    .logo-text strong {
-      display: block;
-      font-family: 'Raleway', sans-serif;
-      font-weight: 700; font-size: .95rem;
-      color: var(--gold); letter-spacing: .18em;
-    }
-    .logo-text span {
-      font-size: .55rem; color: var(--teal);
-      letter-spacing: .25em; text-transform: uppercase;
-    }
-    .header-back {
-      display: flex; align-items: center; gap: .5rem;
-      font-size: .65rem; letter-spacing: .18em;
-      text-transform: uppercase; color: var(--grey);
-      text-decoration: none;
-      transition: color .2s;
-    }
-    .header-back:hover { color: var(--gold); }
-    .header-back::before { content: '←'; font-size: .8rem; }
+      .page-header {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.6rem 3rem;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+        background: rgba(10, 11, 13, 0.7);
+        backdrop-filter: blur(12px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .header-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        text-decoration: none;
+      }
+      .logo-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 2px solid var(--gold);
+        display: grid;
+        place-items: center;
+        font-family: "Playfair Display", serif;
+        font-size: 0.5rem;
+        color: var(--gold);
+        letter-spacing: 0.04em;
+        text-align: center;
+        line-height: 1.2;
+      }
+      .logo-text strong {
+        display: block;
+        font-family: "Raleway", sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--gold);
+        letter-spacing: 0.18em;
+      }
+      .logo-text span {
+        font-size: 0.55rem;
+        color: var(--teal);
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+      }
+      .header-back {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--grey);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .header-back:hover {
+        color: var(--gold);
+      }
+      .header-back::before {
+        content: "←";
+        font-size: 0.8rem;
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        LEFT PANEL — INFO SIDEBAR
        ══════════════════════════════ */
-    .info-panel {
-      background: var(--dark);
-      border-right: 1px solid rgba(201,168,76,.1);
-      padding: 4rem 3rem;
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-      position: relative;
-      overflow: hidden;
-    }
+      .info-panel {
+        background: var(--dark);
+        border-right: 1px solid rgba(201, 168, 76, 0.1);
+        padding: 4rem 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
 
-    /* decorative vertical gold line */
-    .info-panel::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 1px; height: 100%;
-      background: linear-gradient(to bottom,
-        transparent, rgba(201,168,76,.4) 20%,
-        rgba(201,168,76,.4) 80%, transparent);
-    }
+      /* decorative vertical gold line */
+      .info-panel::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(201, 168, 76, 0.4) 20%,
+          rgba(201, 168, 76, 0.4) 80%,
+          transparent
+        );
+      }
 
-    /* large ghost text */
-    .info-ghost {
-      position: absolute;
-      bottom: 2rem; left: -1rem;
-      font-family: 'Playfair Display', serif;
-      font-size: 9rem;
-      font-weight: 900;
-      color: rgba(201,168,76,.04);
-      line-height: 1;
-      pointer-events: none;
-      white-space: nowrap;
-      letter-spacing: -.02em;
-    }
+      /* large ghost text */
+      .info-ghost {
+        position: absolute;
+        bottom: 2rem;
+        left: -1rem;
+        font-family: "Playfair Display", serif;
+        font-size: 9rem;
+        font-weight: 900;
+        color: rgba(201, 168, 76, 0.04);
+        line-height: 1;
+        pointer-events: none;
+        white-space: nowrap;
+        letter-spacing: -0.02em;
+      }
 
-    .info-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      border: 1px solid var(--gold);
-      padding: .4rem 1rem;
-      font-size: .6rem; letter-spacing: .22em;
-      text-transform: uppercase; color: var(--gold);
-      background: var(--gold-glow);
-      width: fit-content;
-    }
-    .info-badge-dot {
-      width: 5px; height: 5px;
-      border-radius: 50%; background: var(--teal);
-    }
+      .info-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: 1px solid var(--gold);
+        padding: 0.4rem 1rem;
+        font-size: 0.6rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gold);
+        background: var(--gold-glow);
+        width: fit-content;
+      }
+      .info-badge-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--teal);
+      }
 
-    .info-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      font-weight: 900;
-      line-height: 1.1;
-      color: var(--white);
-    }
-    .info-title em {
-      font-style: italic; color: var(--gold);
-    }
+      .info-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 900;
+        line-height: 1.1;
+        color: var(--white);
+      }
+      .info-title em {
+        font-style: italic;
+        color: var(--gold);
+      }
 
-    .info-rule {
-      width: 52px; height: 2px;
-      background: linear-gradient(90deg, var(--gold), var(--teal));
-      margin: -.5rem 0;
-    }
+      .info-rule {
+        width: 52px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold), var(--teal));
+        margin: -0.5rem 0;
+      }
 
-    .info-body {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      font-weight: 300;
-      color: rgba(245,240,232,.65);
-      line-height: 1.85;
-    }
+      .info-body {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.05rem;
+        font-weight: 300;
+        color: rgba(245, 240, 232, 0.65);
+        line-height: 1.85;
+      }
 
-    /* Process steps */
-    .process-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.4rem;
-    }
-    .process-step {
-      display: flex;
-      gap: 1.2rem;
-      align-items: flex-start;
-    }
-    .step-num {
-      width: 32px; height: 32px;
-      border: 1px solid var(--gold);
-      display: grid; place-items: center;
-      font-family: 'Playfair Display', serif;
-      font-size: .75rem; font-weight: 700;
-      color: var(--gold);
-      flex-shrink: 0;
-    }
-    .step-content { }
-    .step-title {
-      font-family: 'Raleway', sans-serif;
-      font-size: .75rem; font-weight: 700;
-      letter-spacing: .12em; text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: .25rem;
-    }
-    .step-desc {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: .95rem; font-weight: 300;
-      color: rgba(245,240,232,.55);
-      line-height: 1.6;
-    }
+      /* Process steps */
+      .process-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.4rem;
+      }
+      .process-step {
+        display: flex;
+        gap: 1.2rem;
+        align-items: flex-start;
+      }
+      .step-num {
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--gold);
+        display: grid;
+        place-items: center;
+        font-family: "Playfair Display", serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--gold);
+        flex-shrink: 0;
+      }
+      .step-content {
+      }
+      .step-title {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--white);
+        margin-bottom: 0.25rem;
+      }
+      .step-desc {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.95rem;
+        font-weight: 300;
+        color: rgba(245, 240, 232, 0.55);
+        line-height: 1.6;
+      }
 
-    /* Contact snippet */
-    .contact-strip {
-      display: flex;
-      flex-direction: column;
-      gap: .8rem;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(201,168,76,.12);
-    }
-    .contact-item {
-      display: flex; align-items: center; gap: .8rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: .98rem; font-weight: 300;
-      color: rgba(245,240,232,.6);
-    }
-    .contact-icon {
-      width: 28px; height: 28px;
-      border: 1px solid var(--gold-dim);
-      display: grid; place-items: center;
-      font-size: .75rem;
-      flex-shrink: 0;
-    }
+      /* Contact snippet */
+      .contact-strip {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(201, 168, 76, 0.12);
+      }
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.98rem;
+        font-weight: 300;
+        color: rgba(245, 240, 232, 0.6);
+      }
+      .contact-icon {
+        width: 28px;
+        height: 28px;
+        border: 1px solid var(--gold-dim);
+        display: grid;
+        place-items: center;
+        font-size: 0.75rem;
+        flex-shrink: 0;
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        RIGHT PANEL — BOOKING FORM
        ══════════════════════════════ */
-    .form-panel {
-      background: var(--dark-card);
-      padding: 4rem 3rem;
-      overflow-y: auto;
-      position: relative;
-    }
+      .form-panel {
+        background: var(--dark-card);
+        padding: 4rem 3rem;
+        overflow-y: auto;
+        position: relative;
+      }
 
-    /* ── STEP INDICATOR ── */
-    .step-indicator {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      margin-bottom: 3rem;
-    }
-    .step-pill {
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      flex: 1;
-      position: relative;
-    }
-    .step-pill:not(:last-child)::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(201,168,76,.2);
-      margin: 0 .5rem;
-      transition: background .4s;
-    }
-    .step-pill.done:not(:last-child)::after {
-      background: var(--gold);
-    }
+      /* ── STEP INDICATOR ── */
+      .step-indicator {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        margin-bottom: 3rem;
+      }
+      .step-pill {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        flex: 1;
+        position: relative;
+      }
+      .step-pill:not(:last-child)::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: rgba(201, 168, 76, 0.2);
+        margin: 0 0.5rem;
+        transition: background 0.4s;
+      }
+      .step-pill.done:not(:last-child)::after {
+        background: var(--gold);
+      }
 
-    .step-circle {
-      width: 34px; height: 34px;
-      border-radius: 50%;
-      border: 1px solid rgba(201,168,76,.25);
-      display: grid; place-items: center;
-      font-family: 'Playfair Display', serif;
-      font-size: .75rem; font-weight: 700;
-      color: var(--grey);
-      transition: all .3s;
-      flex-shrink: 0;
-    }
-    .step-pill.active .step-circle {
-      border-color: var(--gold);
-      background: rgba(201,168,76,.1);
-      color: var(--gold);
-      box-shadow: 0 0 0 4px rgba(201,168,76,.1);
-    }
-    .step-pill.done .step-circle {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: var(--black);
-    }
-    .step-pill.done .step-circle::after { content: '✓'; }
-    .step-pill.done .step-num-label { display: none; }
+      .step-circle {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 1px solid rgba(201, 168, 76, 0.25);
+        display: grid;
+        place-items: center;
+        font-family: "Playfair Display", serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--grey);
+        transition: all 0.3s;
+        flex-shrink: 0;
+      }
+      .step-pill.active .step-circle {
+        border-color: var(--gold);
+        background: rgba(201, 168, 76, 0.1);
+        color: var(--gold);
+        box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.1);
+      }
+      .step-pill.done .step-circle {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--black);
+      }
+      .step-pill.done .step-circle::after {
+        content: "✓";
+      }
+      .step-pill.done .step-num-label {
+        display: none;
+      }
 
-    .step-label-text {
-      font-size: .58rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--grey);
-      transition: color .3s;
-      white-space: nowrap;
-    }
-    .step-pill.active .step-label-text { color: var(--gold); }
-    .step-pill.done .step-label-text { color: rgba(201,168,76,.6); }
+      .step-label-text {
+        font-size: 0.58rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--grey);
+        transition: color 0.3s;
+        white-space: nowrap;
+      }
+      .step-pill.active .step-label-text {
+        color: var(--gold);
+      }
+      .step-pill.done .step-label-text {
+        color: rgba(201, 168, 76, 0.6);
+      }
 
-    /* ── FORM STEPS ── */
-    .form-step { display: none; }
-    .form-step.active { display: block; }
+      /* ── FORM STEPS ── */
+      .form-step {
+        display: none;
+      }
+      .form-step.active {
+        display: block;
+      }
 
-    .form-step-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem; font-weight: 700;
-      color: var(--white);
-      margin-bottom: .4rem;
-    }
-    .form-step-sub {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem; font-weight: 300;
-      color: rgba(245,240,232,.5);
-      margin-bottom: 2.2rem;
-      line-height: 1.6;
-    }
+      .form-step-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 0.4rem;
+      }
+      .form-step-sub {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        font-weight: 300;
+        color: rgba(245, 240, 232, 0.5);
+        margin-bottom: 2.2rem;
+        line-height: 1.6;
+      }
 
-    /* ── FIELD STYLES ── */
-    .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-bottom: 1.2rem;
-    }
-    .field-row.full { grid-template-columns: 1fr; }
+      /* ── FIELD STYLES ── */
+      .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+        margin-bottom: 1.2rem;
+      }
+      .field-row.full {
+        grid-template-columns: 1fr;
+      }
 
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: .4rem;
-    }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
 
-    label {
-      font-size: .6rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--grey);
-      font-family: 'Raleway', sans-serif;
-      font-weight: 600;
-    }
-    label .req { color: var(--gold); margin-left: 2px; }
+      label {
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--grey);
+        font-family: "Raleway", sans-serif;
+        font-weight: 600;
+      }
+      label .req {
+        color: var(--gold);
+        margin-left: 2px;
+      }
 
-    input, select, textarea {
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(201,168,76,.2);
-      color: var(--white);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      font-weight: 300;
-      padding: .85rem 1rem;
-      width: 100%;
-      outline: none;
-      transition: border-color .25s, background .25s, box-shadow .25s;
-      appearance: none;
-      -webkit-appearance: none;
-    }
-    input::placeholder, textarea::placeholder { color: rgba(245,240,232,.25); }
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--gold);
-      background: rgba(201,168,76,.04);
-      box-shadow: 0 0 0 3px rgba(201,168,76,.08);
-    }
-    input.error, select.error, textarea.error {
-      border-color: var(--error);
-    }
-    .field-err {
-      font-size: .58rem;
-      color: var(--error);
-      letter-spacing: .1em;
-      display: none;
-    }
-    .field-err.show { display: block; }
+      input,
+      select,
+      textarea {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        color: var(--white);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        font-weight: 300;
+        padding: 0.85rem 1rem;
+        width: 100%;
+        outline: none;
+        transition:
+          border-color 0.25s,
+          background 0.25s,
+          box-shadow 0.25s;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: rgba(245, 240, 232, 0.25);
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: var(--gold);
+        background: rgba(201, 168, 76, 0.04);
+        box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.08);
+      }
+      input.error,
+      select.error,
+      textarea.error {
+        border-color: var(--error);
+      }
+      .field-err {
+        font-size: 0.58rem;
+        color: var(--error);
+        letter-spacing: 0.1em;
+        display: none;
+      }
+      .field-err.show {
+        display: block;
+      }
 
-    select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      padding-right: 2.5rem;
-      cursor: pointer;
-    }
-    select option { background: var(--dark-card); color: var(--white); }
+      select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        padding-right: 2.5rem;
+        cursor: pointer;
+      }
+      select option {
+        background: var(--dark-card);
+        color: var(--white);
+      }
 
-    textarea { resize: vertical; min-height: 110px; line-height: 1.7; }
+      textarea {
+        resize: vertical;
+        min-height: 110px;
+        line-height: 1.7;
+      }
 
-    /* ── SERVICE CARDS (step 2) ── */
-    .service-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
+      /* ── SERVICE CARDS (step 2) ── */
+      .service-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
 
-    .service-card {
-      border: 1px solid rgba(201,168,76,.18);
-      padding: 1.4rem 1.2rem;
-      cursor: pointer;
-      position: relative;
-      transition: border-color .25s, background .25s;
-      background: rgba(255,255,255,.02);
-    }
-    .service-card input[type="radio"] {
-      position: absolute; opacity: 0; width: 0; height: 0;
-    }
-    .service-card:hover { border-color: rgba(201,168,76,.45); }
-    .service-card.selected {
-      border-color: var(--gold);
-      background: rgba(201,168,76,.06);
-    }
-    .service-card.selected::after {
-      content: '✓';
-      position: absolute;
-      top: .7rem; right: .8rem;
-      width: 20px; height: 20px;
-      background: var(--gold);
-      color: var(--black);
-      font-size: .65rem; font-weight: 700;
-      display: grid; place-items: center;
-      border-radius: 50%;
-    }
-    .svc-icon { font-size: 1.6rem; margin-bottom: .6rem; display: block; }
-    .svc-name {
-      font-family: 'Playfair Display', serif;
-      font-size: .95rem; font-weight: 700;
-      color: var(--white);
-      margin-bottom: .3rem;
-    }
-    .svc-desc {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: .85rem; font-weight: 300;
-      color: rgba(245,240,232,.5);
-      line-height: 1.5;
-    }
-    .svc-price {
-      margin-top: .6rem;
-      font-size: .6rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-family: 'Raleway', sans-serif;
-      font-weight: 600;
-    }
+      .service-card {
+        border: 1px solid rgba(201, 168, 76, 0.18);
+        padding: 1.4rem 1.2rem;
+        cursor: pointer;
+        position: relative;
+        transition:
+          border-color 0.25s,
+          background 0.25s;
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .service-card input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .service-card:hover {
+        border-color: rgba(201, 168, 76, 0.45);
+      }
+      .service-card.selected {
+        border-color: var(--gold);
+        background: rgba(201, 168, 76, 0.06);
+      }
+      .service-card.selected::after {
+        content: "✓";
+        position: absolute;
+        top: 0.7rem;
+        right: 0.8rem;
+        width: 20px;
+        height: 20px;
+        background: var(--gold);
+        color: var(--black);
+        font-size: 0.65rem;
+        font-weight: 700;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+      }
+      .svc-icon {
+        font-size: 1.6rem;
+        margin-bottom: 0.6rem;
+        display: block;
+      }
+      .svc-name {
+        font-family: "Playfair Display", serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 0.3rem;
+      }
+      .svc-desc {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.85rem;
+        font-weight: 300;
+        color: rgba(245, 240, 232, 0.5);
+        line-height: 1.5;
+      }
+      .svc-price {
+        margin-top: 0.6rem;
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-family: "Raleway", sans-serif;
+        font-weight: 600;
+      }
 
-    /* ── DATE / TIME PICKER (step 3) ── */
-    .time-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: .7rem;
-      margin-bottom: 1.5rem;
-    }
-    .time-slot {
-      border: 1px solid rgba(201,168,76,.18);
-      padding: .65rem .5rem;
-      text-align: center;
-      cursor: pointer;
-      font-family: 'Raleway', sans-serif;
-      font-size: .7rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      color: rgba(245,240,232,.65);
-      transition: all .2s;
-      background: rgba(255,255,255,.02);
-    }
-    .time-slot:hover { border-color: rgba(201,168,76,.45); color: var(--white); }
-    .time-slot.selected {
-      border-color: var(--gold);
-      background: rgba(201,168,76,.1);
-      color: var(--gold);
-    }
-    .time-slot.unavailable {
-      opacity: .3;
-      cursor: not-allowed;
-      pointer-events: none;
-      text-decoration: line-through;
-    }
+      /* ── DATE / TIME PICKER (step 3) ── */
+      .time-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.7rem;
+        margin-bottom: 1.5rem;
+      }
+      .time-slot {
+        border: 1px solid rgba(201, 168, 76, 0.18);
+        padding: 0.65rem 0.5rem;
+        text-align: center;
+        cursor: pointer;
+        font-family: "Raleway", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        color: rgba(245, 240, 232, 0.65);
+        transition: all 0.2s;
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .time-slot:hover {
+        border-color: rgba(201, 168, 76, 0.45);
+        color: var(--white);
+      }
+      .time-slot.selected {
+        border-color: var(--gold);
+        background: rgba(201, 168, 76, 0.1);
+        color: var(--gold);
+      }
+      .time-slot.unavailable {
+        opacity: 0.3;
+        cursor: not-allowed;
+        pointer-events: none;
+        text-decoration: line-through;
+      }
 
-    /* ── REVIEW PANEL (step 4) ── */
-    .review-block {
-      border: 1px solid rgba(201,168,76,.15);
-      background: rgba(201,168,76,.03);
-      padding: 1.8rem;
-      margin-bottom: 1.5rem;
-    }
-    .review-block-title {
-      font-size: .6rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--teal);
-      font-family: 'Raleway', sans-serif;
-      margin-bottom: 1rem;
-    }
-    .review-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: .5rem 0;
-      border-bottom: 1px solid rgba(201,168,76,.08);
-      gap: 1rem;
-    }
-    .review-row:last-child { border-bottom: none; }
-    .review-key {
-      font-size: .62rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--grey);
-      font-family: 'Raleway', sans-serif;
-      flex-shrink: 0;
-    }
-    .review-val {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--white);
-      text-align: right;
-    }
+      /* ── REVIEW PANEL (step 4) ── */
+      .review-block {
+        border: 1px solid rgba(201, 168, 76, 0.15);
+        background: rgba(201, 168, 76, 0.03);
+        padding: 1.8rem;
+        margin-bottom: 1.5rem;
+      }
+      .review-block-title {
+        font-size: 0.6rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--teal);
+        font-family: "Raleway", sans-serif;
+        margin-bottom: 1rem;
+      }
+      .review-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+        gap: 1rem;
+      }
+      .review-row:last-child {
+        border-bottom: none;
+      }
+      .review-key {
+        font-size: 0.62rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--grey);
+        font-family: "Raleway", sans-serif;
+        flex-shrink: 0;
+      }
+      .review-val {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--white);
+        text-align: right;
+      }
 
-    .review-note {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: .95rem;
-      font-weight: 300;
-      color: rgba(245,240,232,.5);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
+      .review-note {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.95rem;
+        font-weight: 300;
+        color: rgba(245, 240, 232, 0.5);
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
 
-    /* ── CHECKBOX ── */
-    .checkbox-field {
-      display: flex;
-      align-items: flex-start;
-      gap: .8rem;
-      margin-bottom: 1.5rem;
-      cursor: pointer;
-    }
-    .checkbox-field input[type="checkbox"] {
-      width: 18px; height: 18px;
-      min-width: 18px;
-      border: 1px solid rgba(201,168,76,.4);
-      background: transparent;
-      cursor: pointer;
-      padding: 0;
-      accent-color: var(--gold);
-    }
-    .checkbox-field span {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: .95rem;
-      color: rgba(245,240,232,.6);
-      line-height: 1.6;
-    }
-    .checkbox-field span a { color: var(--gold); text-decoration: underline; }
+      /* ── CHECKBOX ── */
+      .checkbox-field {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.8rem;
+        margin-bottom: 1.5rem;
+        cursor: pointer;
+      }
+      .checkbox-field input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+        border: 1px solid rgba(201, 168, 76, 0.4);
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        accent-color: var(--gold);
+      }
+      .checkbox-field span {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.95rem;
+        color: rgba(245, 240, 232, 0.6);
+        line-height: 1.6;
+      }
+      .checkbox-field span a {
+        color: var(--gold);
+        text-decoration: underline;
+      }
 
-    /* ── NAV BUTTONS ── */
-    .form-nav {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-      align-items: center;
-    }
+      /* ── NAV BUTTONS ── */
+      .form-nav {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        align-items: center;
+      }
 
-    .btn-next, .btn-submit {
-      background: var(--gold);
-      color: var(--black);
-      border: none;
-      padding: .95rem 2.2rem;
-      font-family: 'Raleway', sans-serif;
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background .2s, transform .15s;
-      display: flex; align-items: center; gap: .6rem;
-    }
-    .btn-next:hover, .btn-submit:hover {
-      background: var(--gold-lt);
-      transform: translateY(-2px);
-    }
-    .btn-next::after { content: '→'; }
+      .btn-next,
+      .btn-submit {
+        background: var(--gold);
+        color: var(--black);
+        border: none;
+        padding: 0.95rem 2.2rem;
+        font-family: "Raleway", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .btn-next:hover,
+      .btn-submit:hover {
+        background: var(--gold-lt);
+        transform: translateY(-2px);
+      }
+      .btn-next::after {
+        content: "→";
+      }
 
-    .btn-back {
-      background: transparent;
-      color: var(--grey);
-      border: 1px solid rgba(201,168,76,.2);
-      padding: .95rem 1.6rem;
-      font-family: 'Raleway', sans-serif;
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: border-color .2s, color .2s;
-      display: flex; align-items: center; gap: .6rem;
-    }
-    .btn-back::before { content: '←'; }
-    .btn-back:hover { border-color: var(--gold); color: var(--gold); }
+      .btn-back {
+        background: transparent;
+        color: var(--grey);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        padding: 0.95rem 1.6rem;
+        font-family: "Raleway", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .btn-back::before {
+        content: "←";
+      }
+      .btn-back:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
 
-    .btn-submit { padding: .95rem 2.8rem; }
+      .btn-submit {
+        padding: 0.95rem 2.8rem;
+      }
 
-    /* ── SUCCESS SCREEN ── */
-    .success-screen {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 60vh;
-      gap: 1.5rem;
-      padding: 3rem 1rem;
-    }
-    .success-screen.show { display: flex; }
+      /* ── SUCCESS SCREEN ── */
+      .success-screen {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 60vh;
+        gap: 1.5rem;
+        padding: 3rem 1rem;
+      }
+      .success-screen.show {
+        display: flex;
+      }
 
-    .success-icon {
-      width: 88px; height: 88px;
-      border-radius: 50%;
-      border: 2px solid var(--gold);
-      display: grid; place-items: center;
-      font-size: 2.5rem;
-      position: relative;
-    }
-    .success-icon::before {
-      content: '';
-      position: absolute; inset: -10px;
-      border-radius: 50%;
-      border: 1px dashed rgba(201,168,76,.3);
-      animation: spin 12s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
+      .success-icon {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        border: 2px solid var(--gold);
+        display: grid;
+        place-items: center;
+        font-size: 2.5rem;
+        position: relative;
+      }
+      .success-icon::before {
+        content: "";
+        position: absolute;
+        inset: -10px;
+        border-radius: 50%;
+        border: 1px dashed rgba(201, 168, 76, 0.3);
+        animation: spin 12s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
 
-    .success-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem; font-weight: 700;
-      color: var(--white);
-    }
-    .success-title em { font-style: italic; color: var(--gold); }
+      .success-title {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--white);
+      }
+      .success-title em {
+        font-style: italic;
+        color: var(--gold);
+      }
 
-    .success-body {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; font-weight: 300;
-      color: rgba(245,240,232,.6);
-      line-height: 1.8;
-      max-width: 420px;
-    }
+      .success-body {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        font-weight: 300;
+        color: rgba(245, 240, 232, 0.6);
+        line-height: 1.8;
+        max-width: 420px;
+      }
 
-    .success-ref {
-      border: 1px solid rgba(201,168,76,.25);
-      padding: .8rem 2rem;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; font-weight: 700;
-      color: var(--gold);
-      letter-spacing: .15em;
-      background: rgba(201,168,76,.05);
-    }
+      .success-ref {
+        border: 1px solid rgba(201, 168, 76, 0.25);
+        padding: 0.8rem 2rem;
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 0.15em;
+        background: rgba(201, 168, 76, 0.05);
+      }
 
-    .success-meta {
-      font-size: .6rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--grey);
-    }
+      .success-meta {
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--grey);
+      }
 
-    /* ── FORM WRAPPER HIDE ── */
-    .form-body { }
-    .form-body.hidden { display: none; }
+      /* ── FORM WRAPPER HIDE ── */
+      .form-body {
+      }
+      .form-body.hidden {
+        display: none;
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        RESPONSIVE
        ══════════════════════════════ */
-    @media (max-width: 1024px) {
-      .page-wrap { grid-template-columns: 1fr; }
-      .info-panel {
-        border-right: none;
-        border-bottom: 1px solid rgba(201,168,76,.1);
-        padding: 3rem 2rem;
+      @media (max-width: 1024px) {
+        .page-wrap {
+          grid-template-columns: 1fr;
+        }
+        .info-panel {
+          border-right: none;
+          border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+          padding: 3rem 2rem;
+        }
+        .info-ghost {
+          display: none;
+        }
+        .form-panel {
+          padding: 3rem 2rem;
+        }
       }
-      .info-ghost { display: none; }
-      .form-panel { padding: 3rem 2rem; }
-    }
 
-    @media (max-width: 768px) {
-      .page-header { padding: 1.2rem 1.5rem; }
-      .info-panel { padding: 2.5rem 1.5rem; gap: 2rem; }
-      .form-panel { padding: 2.5rem 1.5rem; }
-      .field-row { grid-template-columns: 1fr; }
-      .service-grid { grid-template-columns: 1fr; }
-      .time-grid { grid-template-columns: repeat(2, 1fr); }
-      .step-label-text { display: none; }
-    }
+      @media (max-width: 768px) {
+        .page-header {
+          padding: 1.2rem 1.5rem;
+        }
+        .info-panel {
+          padding: 2.5rem 1.5rem;
+          gap: 2rem;
+        }
+        .form-panel {
+          padding: 2.5rem 1.5rem;
+        }
+        .field-row {
+          grid-template-columns: 1fr;
+        }
+        .service-grid {
+          grid-template-columns: 1fr;
+        }
+        .time-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .step-label-text {
+          display: none;
+        }
+      }
 
-    @media (max-width: 480px) {
-      .page-header { padding: 1rem 1.2rem; }
-      .info-panel, .form-panel { padding: 2rem 1.2rem; }
-      .form-nav { flex-direction: column-reverse; }
-      .btn-next, .btn-submit, .btn-back { width: 100%; justify-content: center; }
-      .time-grid { grid-template-columns: repeat(2, 1fr); gap: .5rem; }
-      .step-indicator { gap: .4rem; }
-      .step-circle { width: 28px; height: 28px; font-size: .65rem; }
-      .review-block { padding: 1.2rem; }
-    }
-    .header-logo img {
-  height: clamp(44px, 8vw, 58px);
-  width: auto;
-  object-fit: contain;
-  display: block;
-  transition: transform 0.4s ease;
-}
-.header-logo img:hover { transform: scale(1.06) rotate(-2deg); }
-  </style>
-</head>
-<body>
+      @media (max-width: 480px) {
+        .page-header {
+          padding: 1rem 1.2rem;
+        }
+        .info-panel,
+        .form-panel {
+          padding: 2rem 1.2rem;
+        }
+        .form-nav {
+          flex-direction: column-reverse;
+        }
+        .btn-next,
+        .btn-submit,
+        .btn-back {
+          width: 100%;
+          justify-content: center;
+        }
+        .time-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.5rem;
+        }
+        .step-indicator {
+          gap: 0.4rem;
+        }
+        .step-circle {
+          width: 28px;
+          height: 28px;
+          font-size: 0.65rem;
+        }
+        .review-block {
+          padding: 1.2rem;
+        }
+      }
+      .header-logo img {
+        height: clamp(44px, 8vw, 58px);
+        width: auto;
+        object-fit: contain;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+      .header-logo img:hover {
+        transform: scale(1.06) rotate(-2deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-bg"></div>
 
-<div class="page-bg"></div>
-
-<div class="page-wrap">
-
-  <!-- ── HEADER ── -->
-  <header class="page-header">
-    <a class="header-logo" href="index.html">
-        <img src="/images/brand-logo.png" alt="Philltos Stitches">
-      <div class="logo-text">
-        <strong>PHILLTOS</strong>
-        <span>Stitches</span>
-      </div>
-    </a>
-    <a class="header-back" href="/">Back to Home</a>
-  </header>
-
-  <!-- ── LEFT INFO PANEL ── -->
-  <aside class="info-panel">
-    <div class="info-ghost">BOOK</div>
-
-    <div data-aos="fade-right" data-aos-duration="700">
-      <div class="info-badge">
-        <span class="info-badge-dot"></span>
-        Begin Your Journey
-      </div>
-    </div>
-
-    <div data-aos="fade-right" data-aos-delay="150" data-aos-duration="800">
-      <h1 class="info-title">
-        Reserve Your<br><em>Consultation</em>
-      </h1>
-      <div class="info-rule" style="margin-top:1rem"></div>
-    </div>
-
-    <p class="info-body" data-aos="fade-right" data-aos-delay="250" data-aos-duration="800">
-      Every masterpiece begins with a conversation.
-      Book your private consultation with our master tailors —
-      a dedicated session where your vision becomes our blueprint.
-    </p>
-
-    <div class="process-list" data-aos="fade-right" data-aos-delay="350" data-aos-duration="800">
-      <div class="process-step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <div class="step-title">Your Details</div>
-          <div class="step-desc">Tell us who you are and how to reach you.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <div class="step-title">Choose a Service</div>
-          <div class="step-desc">Select the type of garment or fitting you need.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <div class="step-title">Pick a Date & Time</div>
-          <div class="step-desc">Find a slot that works for your schedule.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <div class="step-title">Confirm & Await</div>
-          <div class="step-desc">We'll confirm within 24 hrs and prepare for your arrival.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="contact-strip" data-aos="fade-right" data-aos-delay="450" data-aos-duration="800">
-      <div class="contact-item">
-        <div class="contact-icon">📍</div>
-        14 Bespoke Lane, Victoria Island, Lagos
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📞</div>
-        +234 801 234 5678
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">✉️</div>
-        hello@philltos.com
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">🕐</div>
-        Mon – Sat · 9 AM – 6 PM
-      </div>
-    </div>
-  </aside>
-
-  <!-- ── RIGHT FORM PANEL ── -->
-  <main class="form-panel">
-
-    <!-- Step Indicator -->
-    <div class="step-indicator" id="stepIndicator">
-      <div class="step-pill active" data-step="1">
-        <div class="step-circle"><span class="step-num-label">1</span></div>
-        <span class="step-label-text">Details</span>
-      </div>
-      <div class="step-pill" data-step="2">
-        <div class="step-circle"><span class="step-num-label">2</span></div>
-        <span class="step-label-text">Service</span>
-      </div>
-      <div class="step-pill" data-step="3">
-        <div class="step-circle"><span class="step-num-label">3</span></div>
-        <span class="step-label-text">Schedule</span>
-      </div>
-      <div class="step-pill" data-step="4">
-        <div class="step-circle"><span class="step-num-label">4</span></div>
-        <span class="step-label-text">Confirm</span>
-      </div>
-    </div>
-
-    <div class="form-body" id="formBody">
-
-      <!-- ════ STEP 1: PERSONAL DETAILS ════ -->
-      <div class="form-step active" id="step1">
-        <h2 class="form-step-title">Personal Details</h2>
-        <p class="form-step-sub">Let us know who we're dressing. All fields marked <span style="color:var(--gold)">*</span> are required.</p>
-
-        <div class="field-row">
-          <div class="field">
-            <label>First Name <span class="req">*</span></label>
-            <input type="text" id="firstName" placeholder="e.g. Emeka"/>
-            <span class="field-err" id="firstNameErr">Please enter your first name.</span>
+    <div class="page-wrap">
+      <!-- ── HEADER ── -->
+      <header class="page-header">
+        <a class="header-logo" href="index.html">
+          <img src="/images/brand-logo.png" alt="Philltos Stitches" />
+          <div class="logo-text">
+            <strong>PHILLTOS</strong>
+            <span>Stitches</span>
           </div>
-          <div class="field">
-            <label>Last Name <span class="req">*</span></label>
-            <input type="text" id="lastName" placeholder="e.g. Okafor"/>
-            <span class="field-err" id="lastNameErr">Please enter your last name.</span>
+        </a>
+        <a class="header-back" href="/">Back to Home</a>
+      </header>
+
+      <!-- ── LEFT INFO PANEL ── -->
+      <aside class="info-panel">
+        <div class="info-ghost">BOOK</div>
+
+        <div data-aos="fade-right" data-aos-duration="700">
+          <div class="info-badge">
+            <span class="info-badge-dot"></span>
+            Begin Your Journey
           </div>
         </div>
 
-        <div class="field-row full">
-          <div class="field">
-            <label>Email Address <span class="req">*</span></label>
-            <input type="email" id="email" placeholder="e.g. emeka@example.com"/>
-            <span class="field-err" id="emailErr">Please enter a valid email address.</span>
-          </div>
+        <div data-aos="fade-right" data-aos-delay="150" data-aos-duration="800">
+          <h1 class="info-title">Reserve Your<br /><em>Consultation</em></h1>
+          <div class="info-rule" style="margin-top: 1rem"></div>
         </div>
 
-        <div class="field-row">
-          <div class="field">
-            <label>Phone Number <span class="req">*</span></label>
-            <input type="tel" id="phone" placeholder="e.g. +234 801 234 5678"/>
-            <span class="field-err" id="phoneErr">Please enter your phone number.</span>
-          </div>
-          <div class="field">
-            <label>Gender</label>
-            <select id="gender">
-              <option value="">Select gender</option>
-              <option>Male</option>
-              <option>Female</option>
-              <option>Prefer not to say</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field-row full">
-          <div class="field">
-            <label>How did you hear about us?</label>
-            <select id="referral">
-              <option value="">Select an option</option>
-              <option>Instagram</option>
-              <option>Facebook</option>
-              <option>Google Search</option>
-              <option>Word of Mouth</option>
-              <option>Returning Client</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-nav">
-          <button class="btn-next" id="next1">Continue</button>
-        </div>
-      </div>
-
-      <!-- ════ STEP 2: SERVICE SELECTION ════ -->
-      <div class="form-step" id="step2">
-        <h2 class="form-step-title">Choose Your Service</h2>
-        <p class="form-step-sub">Select the type of garment or tailoring service you require.</p>
-
-        <div class="service-grid" id="serviceGrid">
-          <label class="service-card" data-service="Bespoke Suit">
-            <input type="radio" name="service" value="Bespoke Suit"/>
-            <span class="svc-icon">🕴️</span>
-            <div class="svc-name">Bespoke Suit</div>
-            <div class="svc-desc">Full custom suit — jacket, trousers, and waistcoat.</div>
-            <div class="svc-price">From ₦120,000</div>
-          </label>
-          <label class="service-card" data-service="Traditional Attire">
-            <input type="radio" name="service" value="Traditional Attire"/>
-            <span class="svc-icon">👘</span>
-            <div class="svc-name">Traditional Attire</div>
-            <div class="svc-desc">Agbada, Aso-Oke, Kaftan, and cultural wear.</div>
-            <div class="svc-price">From ₦85,000</div>
-          </label>
-          <label class="service-card" data-service="Wedding Outfit">
-            <input type="radio" name="service" value="Wedding Outfit"/>
-            <span class="svc-icon">💍</span>
-            <div class="svc-name">Wedding Outfit</div>
-            <div class="svc-desc">Bridal, groom, and bridal party ensembles.</div>
-            <div class="svc-price">From ₦200,000</div>
-          </label>
-          <label class="service-card" data-service="Corporate Uniform">
-            <input type="radio" name="service" value="Corporate Uniform"/>
-            <span class="svc-icon">👔</span>
-            <div class="svc-name">Corporate Uniform</div>
-            <div class="svc-desc">Team uniforms, branded workwear, and office sets.</div>
-            <div class="svc-price">Custom Quote</div>
-          </label>
-          <label class="service-card" data-service="Alterations & Repairs">
-            <input type="radio" name="service" value="Alterations & Repairs"/>
-            <span class="svc-icon">✂️</span>
-            <div class="svc-name">Alterations & Repairs</div>
-            <div class="svc-desc">Resizing, repairs, and garment restoration.</div>
-            <div class="svc-price">From ₦10,000</div>
-          </label>
-          <label class="service-card" data-service="Style Consultation">
-            <input type="radio" name="service" value="Style Consultation"/>
-            <span class="svc-icon">🪡</span>
-            <div class="svc-name">Style Consultation</div>
-            <div class="svc-desc">Expert advice on fabric, fit, and personal style.</div>
-            <div class="svc-price">₦15,000 / hr</div>
-          </label>
-        </div>
-        <span class="field-err" id="serviceErr" style="margin-bottom:1rem; display:none">Please select a service to continue.</span>
-
-        <div class="field-row full" style="margin-top:.5rem">
-          <div class="field">
-            <label>Additional Notes</label>
-            <textarea id="notes" placeholder="Describe your vision, fabric preferences, occasion details, or any special requirements…"></textarea>
-          </div>
-        </div>
-
-        <div class="form-nav">
-          <button class="btn-back" id="back2">Back</button>
-          <button class="btn-next" id="next2">Continue</button>
-        </div>
-      </div>
-
-      <!-- ════ STEP 3: DATE & TIME ════ -->
-      <div class="form-step" id="step3">
-        <h2 class="form-step-title">Schedule Your Visit</h2>
-        <p class="form-step-sub">Choose your preferred date and a time slot that suits you.</p>
-
-        <div class="field-row full">
-          <div class="field">
-            <label>Preferred Date <span class="req">*</span></label>
-            <input type="date" id="prefDate"/>
-            <span class="field-err" id="dateErr">Please select a date.</span>
-          </div>
-        </div>
-
-        <div class="field" style="margin-bottom:1.5rem">
-          <label style="margin-bottom:.7rem; display:block">Select a Time Slot <span class="req">*</span></label>
-          <div class="time-grid" id="timeGrid">
-            <div class="time-slot" data-time="9:00 AM">9:00 AM</div>
-            <div class="time-slot" data-time="9:30 AM">9:30 AM</div>
-            <div class="time-slot unavailable" data-time="10:00 AM">10:00 AM</div>
-            <div class="time-slot" data-time="10:30 AM">10:30 AM</div>
-            <div class="time-slot" data-time="11:00 AM">11:00 AM</div>
-            <div class="time-slot unavailable" data-time="11:30 AM">11:30 AM</div>
-            <div class="time-slot" data-time="12:00 PM">12:00 PM</div>
-            <div class="time-slot" data-time="1:00 PM">1:00 PM</div>
-            <div class="time-slot unavailable" data-time="2:00 PM">2:00 PM</div>
-            <div class="time-slot" data-time="2:30 PM">2:30 PM</div>
-            <div class="time-slot" data-time="3:00 PM">3:00 PM</div>
-            <div class="time-slot" data-time="3:30 PM">3:30 PM</div>
-            <div class="time-slot" data-time="4:00 PM">4:00 PM</div>
-            <div class="time-slot unavailable" data-time="4:30 PM">4:30 PM</div>
-            <div class="time-slot" data-time="5:00 PM">5:00 PM</div>
-          </div>
-          <span class="field-err" id="timeErr" style="display:none">Please select a time slot.</span>
-        </div>
-
-        <div class="field-row full">
-          <div class="field">
-            <label>Location Preference</label>
-            <select id="location">
-              <option value="Studio Visit">Visit our studio (Victoria Island, Lagos)</option>
-              <option value="Home Visit">Home / office visit (Lagos Mainland)</option>
-              <option value="Virtual">Virtual consultation (WhatsApp / Zoom)</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-nav">
-          <button class="btn-back" id="back3">Back</button>
-          <button class="btn-next" id="next3">Continue</button>
-        </div>
-      </div>
-
-      <!-- ════ STEP 4: REVIEW & CONFIRM ════ -->
-      <div class="form-step" id="step4">
-        <h2 class="form-step-title">Review & Confirm</h2>
-        <p class="form-step-sub">Take a moment to review your booking details before submitting.</p>
-
-        <div class="review-block">
-          <div class="review-block-title">Personal Information</div>
-          <div class="review-row">
-            <span class="review-key">Name</span>
-            <span class="review-val" id="rv-name">—</span>
-          </div>
-          <div class="review-row">
-            <span class="review-key">Email</span>
-            <span class="review-val" id="rv-email">—</span>
-          </div>
-          <div class="review-row">
-            <span class="review-key">Phone</span>
-            <span class="review-val" id="rv-phone">—</span>
-          </div>
-        </div>
-
-        <div class="review-block">
-          <div class="review-block-title">Service & Schedule</div>
-          <div class="review-row">
-            <span class="review-key">Service</span>
-            <span class="review-val" id="rv-service">—</span>
-          </div>
-          <div class="review-row">
-            <span class="review-key">Date</span>
-            <span class="review-val" id="rv-date">—</span>
-          </div>
-          <div class="review-row">
-            <span class="review-key">Time</span>
-            <span class="review-val" id="rv-time">—</span>
-          </div>
-          <div class="review-row">
-            <span class="review-key">Location</span>
-            <span class="review-val" id="rv-location">—</span>
-          </div>
-        </div>
-
-        <p class="review-note" id="rv-notes-wrap" style="display:none">
-          <strong style="color:var(--gold);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;font-family:'Raleway',sans-serif">Your Notes —</strong><br>
-          <span id="rv-notes"></span>
+        <p
+          class="info-body"
+          data-aos="fade-right"
+          data-aos-delay="250"
+          data-aos-duration="800"
+        >
+          Every masterpiece begins with a conversation. Book your private
+          consultation with our master tailors — a dedicated session where your
+          vision becomes our blueprint.
         </p>
 
-        <label class="checkbox-field">
-          <input type="checkbox" id="agreeTerms"/>
-          <span>I agree to Philltos Stitches' <a href="#">Terms & Conditions</a> and understand a deposit may be required for bespoke orders.</span>
-        </label>
-        <span class="field-err" id="termsErr">You must agree to the terms to continue.</span>
-
-        <div class="form-nav">
-          <button class="btn-back" id="back4">Back</button>
-          <button class="btn-submit" id="submitBtn">Confirm Booking</button>
+        <div
+          class="process-list"
+          data-aos="fade-right"
+          data-aos-delay="350"
+          data-aos-duration="800"
+        >
+          <div class="process-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <div class="step-title">Your Details</div>
+              <div class="step-desc">
+                Tell us who you are and how to reach you.
+              </div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <div class="step-title">Choose a Service</div>
+              <div class="step-desc">
+                Select the type of garment or fitting you need.
+              </div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <div class="step-title">Pick a Date & Time</div>
+              <div class="step-desc">
+                Find a slot that works for your schedule.
+              </div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <div class="step-title">Confirm & Await</div>
+              <div class="step-desc">
+                We'll confirm within 24 hrs and prepare for your arrival.
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-    </div><!-- /.form-body -->
+        <div
+          class="contact-strip"
+          data-aos="fade-right"
+          data-aos-delay="450"
+          data-aos-duration="800"
+        >
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            14 Bespoke Lane, Victoria Island, Lagos
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            +234 801 234 5678
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            hello@philltos.com
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🕐</div>
+            Mon – Sat · 9 AM – 6 PM
+          </div>
+        </div>
+      </aside>
 
-    <!-- ── SUCCESS ── -->
-    <div class="success-screen" id="successScreen">
-      <div class="success-icon">🪡</div>
-      <h2 class="success-title">You're <em>Booked!</em></h2>
-      <p class="success-body">
-        Thank you for choosing Philltos Stitches. Your consultation request has been received
-        and we'll confirm within 24 hours. Prepare to be dressed exceptionally.
-      </p>
-      <div class="success-ref" id="successRef">PS-000000</div>
-      <p class="success-meta">Booking reference · Check your email for details</p>
-      <a href="index.html" style="
-        margin-top:1rem;
-        font-family:'Raleway',sans-serif;
-        font-size:.65rem; letter-spacing:.2em;
-        text-transform:uppercase; color:var(--gold);
-        text-decoration:none; border-bottom:1px solid rgba(201,168,76,.4);
-        padding-bottom:.2rem;
-      ">← Return to Homepage</a>
+      <!-- ── RIGHT FORM PANEL ── -->
+      <main class="form-panel">
+        <!-- Step Indicator -->
+        <div class="step-indicator" id="stepIndicator">
+          <div class="step-pill active" data-step="1">
+            <div class="step-circle"><span class="step-num-label">1</span></div>
+            <span class="step-label-text">Details</span>
+          </div>
+          <div class="step-pill" data-step="2">
+            <div class="step-circle"><span class="step-num-label">2</span></div>
+            <span class="step-label-text">Service</span>
+          </div>
+          <div class="step-pill" data-step="3">
+            <div class="step-circle"><span class="step-num-label">3</span></div>
+            <span class="step-label-text">Schedule</span>
+          </div>
+          <div class="step-pill" data-step="4">
+            <div class="step-circle"><span class="step-num-label">4</span></div>
+            <span class="step-label-text">Confirm</span>
+          </div>
+        </div>
+
+        <div class="form-body" id="formBody">
+          <!-- ════ STEP 1: PERSONAL DETAILS ════ -->
+          <div class="form-step active" id="step1">
+            <h2 class="form-step-title">Personal Details</h2>
+            <p class="form-step-sub">
+              Let us know who we're dressing. All fields marked
+              <span style="color: var(--gold)">*</span> are required.
+            </p>
+
+            <div class="field-row">
+              <div class="field">
+                <label>First Name <span class="req">*</span></label>
+                <input type="text" id="firstName" placeholder="e.g. Emeka" />
+                <span class="field-err" id="firstNameErr"
+                  >Please enter your first name.</span
+                >
+              </div>
+              <div class="field">
+                <label>Last Name <span class="req">*</span></label>
+                <input type="text" id="lastName" placeholder="e.g. Okafor" />
+                <span class="field-err" id="lastNameErr"
+                  >Please enter your last name.</span
+                >
+              </div>
+            </div>
+
+            <div class="field-row full">
+              <div class="field">
+                <label>Email Address <span class="req">*</span></label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="e.g. emeka@example.com"
+                />
+                <span class="field-err" id="emailErr"
+                  >Please enter a valid email address.</span
+                >
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label>Phone Number <span class="req">*</span></label>
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder="e.g. +234 801 234 5678"
+                />
+                <span class="field-err" id="phoneErr"
+                  >Please enter your phone number.</span
+                >
+              </div>
+              <div class="field">
+                <label>Gender</label>
+                <select id="gender">
+                  <option value="">Select gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Prefer not to say</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-row full">
+              <div class="field">
+                <label>How did you hear about us?</label>
+                <select id="referral">
+                  <option value="">Select an option</option>
+                  <option>Instagram</option>
+                  <option>Facebook</option>
+                  <option>Google Search</option>
+                  <option>Word of Mouth</option>
+                  <option>Returning Client</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-nav">
+              <button class="btn-next" id="next1">Continue</button>
+            </div>
+          </div>
+
+          <!-- ════ STEP 2: SERVICE SELECTION ════ -->
+          <div class="form-step" id="step2">
+            <h2 class="form-step-title">Choose Your Service</h2>
+            <p class="form-step-sub">
+              Select the type of garment or tailoring service you require.
+            </p>
+
+            <div class="service-grid" id="serviceGrid">
+              <label class="service-card" data-service="Bespoke Suit">
+                <input type="radio" name="service" value="Bespoke Suit" />
+                <span class="svc-icon">🕴️</span>
+                <div class="svc-name">Bespoke Suit</div>
+                <div class="svc-desc">
+                  Full custom suit — jacket, trousers, and waistcoat.
+                </div>
+                <div class="svc-price">From ₦120,000</div>
+              </label>
+              <label class="service-card" data-service="Traditional Attire">
+                <input type="radio" name="service" value="Traditional Attire" />
+                <span class="svc-icon">👘</span>
+                <div class="svc-name">Traditional Attire</div>
+                <div class="svc-desc">
+                  Agbada, Aso-Oke, Kaftan, and cultural wear.
+                </div>
+                <div class="svc-price">From ₦85,000</div>
+              </label>
+              <label class="service-card" data-service="Wedding Outfit">
+                <input type="radio" name="service" value="Wedding Outfit" />
+                <span class="svc-icon">💍</span>
+                <div class="svc-name">Wedding Outfit</div>
+                <div class="svc-desc">
+                  Bridal, groom, and bridal party ensembles.
+                </div>
+                <div class="svc-price">From ₦200,000</div>
+              </label>
+              <label class="service-card" data-service="Corporate Uniform">
+                <input type="radio" name="service" value="Corporate Uniform" />
+                <span class="svc-icon">👔</span>
+                <div class="svc-name">Corporate Uniform</div>
+                <div class="svc-desc">
+                  Team uniforms, branded workwear, and office sets.
+                </div>
+                <div class="svc-price">Custom Quote</div>
+              </label>
+              <label class="service-card" data-service="Alterations & Repairs">
+                <input
+                  type="radio"
+                  name="service"
+                  value="Alterations & Repairs"
+                />
+                <span class="svc-icon">✂️</span>
+                <div class="svc-name">Alterations & Repairs</div>
+                <div class="svc-desc">
+                  Resizing, repairs, and garment restoration.
+                </div>
+                <div class="svc-price">From ₦10,000</div>
+              </label>
+              <label class="service-card" data-service="Style Consultation">
+                <input type="radio" name="service" value="Style Consultation" />
+                <span class="svc-icon">🪡</span>
+                <div class="svc-name">Style Consultation</div>
+                <div class="svc-desc">
+                  Expert advice on fabric, fit, and personal style.
+                </div>
+                <div class="svc-price">₦15,000 / hr</div>
+              </label>
+            </div>
+            <span
+              class="field-err"
+              id="serviceErr"
+              style="margin-bottom: 1rem; display: none"
+              >Please select a service to continue.</span
+            >
+
+            <div class="field-row full" style="margin-top: 0.5rem">
+              <div class="field">
+                <label>Additional Notes</label>
+                <textarea
+                  id="notes"
+                  placeholder="Describe your vision, fabric preferences, occasion details, or any special requirements…"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="form-nav">
+              <button class="btn-back" id="back2">Back</button>
+              <button class="btn-next" id="next2">Continue</button>
+            </div>
+          </div>
+
+          <!-- ════ STEP 3: DATE & TIME ════ -->
+          <div class="form-step" id="step3">
+            <h2 class="form-step-title">Schedule Your Visit</h2>
+            <p class="form-step-sub">
+              Choose your preferred date and a time slot that suits you.
+            </p>
+
+            <div class="field-row full">
+              <div class="field">
+                <label>Preferred Date <span class="req">*</span></label>
+                <input type="date" id="prefDate" />
+                <span class="field-err" id="dateErr"
+                  >Please select a date.</span
+                >
+              </div>
+            </div>
+
+            <div class="field" style="margin-bottom: 1.5rem">
+              <label style="margin-bottom: 0.7rem; display: block"
+                >Select a Time Slot <span class="req">*</span></label
+              >
+              <div class="time-grid" id="timeGrid">
+                <div class="time-slot" data-time="9:00 AM">9:00 AM</div>
+                <div class="time-slot" data-time="9:30 AM">9:30 AM</div>
+                <div class="time-slot unavailable" data-time="10:00 AM">
+                  10:00 AM
+                </div>
+                <div class="time-slot" data-time="10:30 AM">10:30 AM</div>
+                <div class="time-slot" data-time="11:00 AM">11:00 AM</div>
+                <div class="time-slot unavailable" data-time="11:30 AM">
+                  11:30 AM
+                </div>
+                <div class="time-slot" data-time="12:00 PM">12:00 PM</div>
+                <div class="time-slot" data-time="1:00 PM">1:00 PM</div>
+                <div class="time-slot unavailable" data-time="2:00 PM">
+                  2:00 PM
+                </div>
+                <div class="time-slot" data-time="2:30 PM">2:30 PM</div>
+                <div class="time-slot" data-time="3:00 PM">3:00 PM</div>
+                <div class="time-slot" data-time="3:30 PM">3:30 PM</div>
+                <div class="time-slot" data-time="4:00 PM">4:00 PM</div>
+                <div class="time-slot unavailable" data-time="4:30 PM">
+                  4:30 PM
+                </div>
+                <div class="time-slot" data-time="5:00 PM">5:00 PM</div>
+              </div>
+              <span class="field-err" id="timeErr" style="display: none"
+                >Please select a time slot.</span
+              >
+            </div>
+
+            <div class="field-row full">
+              <div class="field">
+                <label>Location Preference</label>
+                <select id="location">
+                  <option value="Studio Visit">
+                    Visit our studio (Victoria Island, Lagos)
+                  </option>
+                  <option value="Home Visit">
+                    Home / office visit (Lagos Mainland)
+                  </option>
+                  <option value="Virtual">
+                    Virtual consultation (WhatsApp / Zoom)
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-nav">
+              <button class="btn-back" id="back3">Back</button>
+              <button class="btn-next" id="next3">Continue</button>
+            </div>
+          </div>
+
+          <!-- ════ STEP 4: REVIEW & CONFIRM ════ -->
+          <div class="form-step" id="step4">
+            <h2 class="form-step-title">Review & Confirm</h2>
+            <p class="form-step-sub">
+              Take a moment to review your booking details before submitting.
+            </p>
+
+            <div class="review-block">
+              <div class="review-block-title">Personal Information</div>
+              <div class="review-row">
+                <span class="review-key">Name</span>
+                <span class="review-val" id="rv-name">—</span>
+              </div>
+              <div class="review-row">
+                <span class="review-key">Email</span>
+                <span class="review-val" id="rv-email">—</span>
+              </div>
+              <div class="review-row">
+                <span class="review-key">Phone</span>
+                <span class="review-val" id="rv-phone">—</span>
+              </div>
+            </div>
+
+            <div class="review-block">
+              <div class="review-block-title">Service & Schedule</div>
+              <div class="review-row">
+                <span class="review-key">Service</span>
+                <span class="review-val" id="rv-service">—</span>
+              </div>
+              <div class="review-row">
+                <span class="review-key">Date</span>
+                <span class="review-val" id="rv-date">—</span>
+              </div>
+              <div class="review-row">
+                <span class="review-key">Time</span>
+                <span class="review-val" id="rv-time">—</span>
+              </div>
+              <div class="review-row">
+                <span class="review-key">Location</span>
+                <span class="review-val" id="rv-location">—</span>
+              </div>
+            </div>
+
+            <p class="review-note" id="rv-notes-wrap" style="display: none">
+              <strong
+                style="
+                  color: var(--gold);
+                  font-size: 0.6rem;
+                  letter-spacing: 0.18em;
+                  text-transform: uppercase;
+                  font-family: &quot;Raleway&quot;, sans-serif;
+                "
+                >Your Notes —</strong
+              ><br />
+              <span id="rv-notes"></span>
+            </p>
+
+            <label class="checkbox-field">
+              <input type="checkbox" id="agreeTerms" />
+              <span
+                >I agree to Philltos Stitches'
+                <a href="#">Terms & Conditions</a> and understand a deposit may
+                be required for bespoke orders.</span
+              >
+            </label>
+            <span class="field-err" id="termsErr"
+              >You must agree to the terms to continue.</span
+            >
+
+            <div class="form-nav">
+              <button class="btn-back" id="back4">Back</button>
+              <button class="btn-submit" id="submitBtn">Confirm Booking</button>
+            </div>
+          </div>
+        </div>
+        <!-- /.form-body -->
+
+        <!-- ── SUCCESS ── -->
+        <div class="success-screen" id="successScreen">
+          <div class="success-icon">🪡</div>
+          <h2 class="success-title">You're <em>Booked!</em></h2>
+          <p class="success-body">
+            Thank you for choosing Philltos Stitches. Your consultation request
+            has been received and we'll confirm within 24 hours. Prepare to be
+            dressed exceptionally.
+          </p>
+          <div class="success-ref" id="successRef">PS-000000</div>
+          <p class="success-meta">
+            Booking reference · Check your email for details
+          </p>
+          <a
+            href="index.html"
+            style="
+              margin-top: 1rem;
+              font-family: &quot;Raleway&quot;, sans-serif;
+              font-size: 0.65rem;
+              letter-spacing: 0.2em;
+              text-transform: uppercase;
+              color: var(--gold);
+              text-decoration: none;
+              border-bottom: 1px solid rgba(201, 168, 76, 0.4);
+              padding-bottom: 0.2rem;
+            "
+            >← Return to Homepage</a
+          >
+        </div>
+      </main>
     </div>
+    <!-- /.page-wrap -->
 
-  </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      AOS.init({ once: true, easing: "ease-out-quart" });
 
-</div><!-- /.page-wrap -->
+      /* ── SERVICE CARD SELECTION ── */
+      document.querySelectorAll(".service-card").forEach((card) => {
+        card.addEventListener("click", () => {
+          document
+            .querySelectorAll(".service-card")
+            .forEach((c) => c.classList.remove("selected"));
+          card.classList.add("selected");
+          card.querySelector('input[type="radio"]').checked = true;
+          document.getElementById("serviceErr").style.display = "none";
+        });
+      });
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>
-AOS.init({ once: true, easing: 'ease-out-quart' });
+      /* ── TIME SLOT SELECTION ── */
+      document
+        .querySelectorAll(".time-slot:not(.unavailable)")
+        .forEach((slot) => {
+          slot.addEventListener("click", () => {
+            document
+              .querySelectorAll(".time-slot")
+              .forEach((s) => s.classList.remove("selected"));
+            slot.classList.add("selected");
+            document.getElementById("timeErr").style.display = "none";
+          });
+        });
 
-/* ── SERVICE CARD SELECTION ── */
-document.querySelectorAll('.service-card').forEach(card => {
-  card.addEventListener('click', () => {
-    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
-    card.classList.add('selected');
-    card.querySelector('input[type="radio"]').checked = true;
-    document.getElementById('serviceErr').style.display = 'none';
-  });
-});
+      /* ── SET DATE MIN ── */
+      const dateInput = document.getElementById("prefDate");
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      dateInput.min = tomorrow.toISOString().split("T")[0];
 
-/* ── TIME SLOT SELECTION ── */
-document.querySelectorAll('.time-slot:not(.unavailable)').forEach(slot => {
-  slot.addEventListener('click', () => {
-    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
-    slot.classList.add('selected');
-    document.getElementById('timeErr').style.display = 'none';
-  });
-});
+      /* ── STEP MANAGEMENT ── */
+      let currentStep = 1;
 
-/* ── SET DATE MIN ── */
-const dateInput = document.getElementById('prefDate');
-const tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 1);
-dateInput.min = tomorrow.toISOString().split('T')[0];
+      function setStep(n) {
+        document
+          .querySelectorAll(".form-step")
+          .forEach((s) => s.classList.remove("active"));
+        document.getElementById("step" + n).classList.add("active");
 
-/* ── STEP MANAGEMENT ── */
-let currentStep = 1;
+        document.querySelectorAll(".step-pill").forEach((pill, i) => {
+          pill.classList.remove("active", "done");
+          if (i + 1 < n) pill.classList.add("done");
+          if (i + 1 === n) pill.classList.add("active");
+        });
 
-function setStep(n) {
-  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-  document.getElementById('step' + n).classList.add('active');
+        currentStep = n;
+        document.querySelector(".form-panel").scrollTop = 0;
+      }
 
-  document.querySelectorAll('.step-pill').forEach((pill, i) => {
-    pill.classList.remove('active', 'done');
-    if (i + 1 < n) pill.classList.add('done');
-    if (i + 1 === n) pill.classList.add('active');
-  });
+      /* ── VALIDATION HELPERS ── */
+      function showErr(id, msg) {
+        const el = document.getElementById(id);
+        if (el) {
+          el.textContent = msg || el.textContent;
+          el.classList.add("show");
+        }
+      }
+      function clearErr(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove("show");
+      }
+      function markField(id, valid) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (valid) {
+          el.classList.remove("error");
+        } else {
+          el.classList.add("error");
+        }
+      }
 
-  currentStep = n;
-  document.querySelector('.form-panel').scrollTop = 0;
-}
+      /* ── STEP 1 NEXT ── */
+      const firstName = document.getElementById("firstName");
+      const lastName = document.getElementById("lastName");
+      const email = document.getElementById("email");
+      const phone = document.getElementById("phone");
+      const inputs = [firstName, lastName, email, phone];
 
-/* ── VALIDATION HELPERS ── */
-function showErr(id, msg) {
-  const el = document.getElementById(id);
-  if (el) { el.textContent = msg || el.textContent; el.classList.add('show'); }
-}
-function clearErr(id) {
-  const el = document.getElementById(id);
-  if (el) el.classList.remove('show');
-}
-function markField(id, valid) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  if (valid) { el.classList.remove('error'); }
-  else { el.classList.add('error'); }
-}
+      inputs.forEach((input, i, arr) => {
+        input.addEventListener("input", () => {
+          if ((input.value = "")) {
+            console.log("Value is null");
+          }
+        });
+      });
+      const fn = document.getElementById("firstName").value.trim();
+      const ln = document.getElementById("lastName").value.trim();
+      const em = document.getElementById("email").value.trim();
+      const ph = document.getElementById("phone").value.trim();
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      document.getElementById("next1").addEventListener("click", () => {
+        let ok = true;
 
-/* ── STEP 1 NEXT ── */
-document.getElementById('next1').addEventListener('click', () => {
-  let ok = true;
-  const fn = document.getElementById('firstName').value.trim();
-  const ln = document.getElementById('lastName').value.trim();
-  const em = document.getElementById('email').value.trim();
-  const ph = document.getElementById('phone').value.trim();
-  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!fn) {
+          markField("firstName", false);
+          showErr("firstNameErr");
+          ok = false;
+        } else {
+          markField("firstName", true);
+          clearErr("firstNameErr");
+        }
 
-  if (!fn) { markField('firstName', false); showErr('firstNameErr'); ok = false; }
-  else { markField('firstName', true); clearErr('firstNameErr'); }
+        if (!ln) {
+          markField("lastName", false);
+          showErr("lastNameErr");
+          ok = false;
+        } else {
+          markField("lastName", true);
+          clearErr("lastNameErr");
+        }
 
-  if (!ln) { markField('lastName', false); showErr('lastNameErr'); ok = false; }
-  else { markField('lastName', true); clearErr('lastNameErr'); }
+        if (!em || !emailRe.test(em)) {
+          markField("email", false);
+          showErr("emailErr");
+          ok = false;
+        } else {
+          markField("email", true);
+          clearErr("emailErr");
+        }
 
-  if (!em || !emailRe.test(em)) { markField('email', false); showErr('emailErr'); ok = false; }
-  else { markField('email', true); clearErr('emailErr'); }
+        if (!ph) {
+          markField("phone", false);
+          showErr("phoneErr");
+          ok = false;
+        } else {
+          markField("phone", true);
+          clearErr("phoneErr");
+        }
 
-  if (!ph) { markField('phone', false); showErr('phoneErr'); ok = false; }
-  else { markField('phone', true); clearErr('phoneErr'); }
+        if (ok) setStep(2);
+      });
 
-  if (ok) setStep(2);
-});
+      /* ── STEP 2 BACK / NEXT ── */
+      document
+        .getElementById("back2")
+        .addEventListener("click", () => setStep(1));
+      document.getElementById("next2").addEventListener("click", () => {
+        const sel = document.querySelector('input[name="service"]:checked');
+        if (!sel) {
+          const err = document.getElementById("serviceErr");
+          err.style.display = "block";
+          return;
+        }
+        setStep(3);
+      });
 
-/* ── STEP 2 BACK / NEXT ── */
-document.getElementById('back2').addEventListener('click', () => setStep(1));
-document.getElementById('next2').addEventListener('click', () => {
-  const sel = document.querySelector('input[name="service"]:checked');
-  if (!sel) {
-    const err = document.getElementById('serviceErr');
-    err.style.display = 'block';
-    return;
-  }
-  setStep(3);
-});
+      /* ── STEP 3 BACK / NEXT ── */
+      document
+        .getElementById("back3")
+        .addEventListener("click", () => setStep(2));
+      document.getElementById("next3").addEventListener("click", () => {
+        let ok = true;
+        const dt = document.getElementById("prefDate").value;
+        const ts = document.querySelector(".time-slot.selected");
 
-/* ── STEP 3 BACK / NEXT ── */
-document.getElementById('back3').addEventListener('click', () => setStep(2));
-document.getElementById('next3').addEventListener('click', () => {
-  let ok = true;
-  const dt = document.getElementById('prefDate').value;
-  const ts = document.querySelector('.time-slot.selected');
+        if (!dt) {
+          markField("prefDate", false);
+          showErr("dateErr");
+          ok = false;
+        } else {
+          markField("prefDate", true);
+          clearErr("dateErr");
+        }
 
-  if (!dt) { markField('prefDate', false); showErr('dateErr'); ok = false; }
-  else { markField('prefDate', true); clearErr('dateErr'); }
+        if (!ts) {
+          document.getElementById("timeErr").style.display = "block";
+          ok = false;
+        } else {
+          document.getElementById("timeErr").style.display = "none";
+        }
 
-  if (!ts) { document.getElementById('timeErr').style.display = 'block'; ok = false; }
-  else { document.getElementById('timeErr').style.display = 'none'; }
+        if (!ok) return;
 
-  if (!ok) return;
+        /* populate review */
+        const fn = document.getElementById("firstName").value.trim();
+        const ln = document.getElementById("lastName").value.trim();
+        document.getElementById("rv-name").textContent = fn + " " + ln;
+        document.getElementById("rv-email").textContent = document
+          .getElementById("email")
+          .value.trim();
+        document.getElementById("rv-phone").textContent = document
+          .getElementById("phone")
+          .value.trim();
+        document.getElementById("rv-service").textContent =
+          document.querySelector('input[name="service"]:checked').value;
+        document.getElementById("rv-date").textContent = new Date(
+          dt + "T00:00:00",
+        ).toLocaleDateString("en-GB", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+        document.getElementById("rv-time").textContent = ts.dataset.time;
+        document.getElementById("rv-location").textContent =
+          document.getElementById("location").value;
+        const notes = document.getElementById("notes").value.trim();
+        if (notes) {
+          document.getElementById("rv-notes").textContent = notes;
+          document.getElementById("rv-notes-wrap").style.display = "block";
+        }
 
-  /* populate review */
-  const fn = document.getElementById('firstName').value.trim();
-  const ln = document.getElementById('lastName').value.trim();
-  document.getElementById('rv-name').textContent = fn + ' ' + ln;
-  document.getElementById('rv-email').textContent = document.getElementById('email').value.trim();
-  document.getElementById('rv-phone').textContent = document.getElementById('phone').value.trim();
-  document.getElementById('rv-service').textContent = document.querySelector('input[name="service"]:checked').value;
-  document.getElementById('rv-date').textContent = new Date(dt + 'T00:00:00').toLocaleDateString('en-GB', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-  document.getElementById('rv-time').textContent = ts.dataset.time;
-  document.getElementById('rv-location').textContent = document.getElementById('location').value;
-  const notes = document.getElementById('notes').value.trim();
-  if (notes) {
-    document.getElementById('rv-notes').textContent = notes;
-    document.getElementById('rv-notes-wrap').style.display = 'block';
-  }
+        setStep(4);
+      });
 
-  setStep(4);
-});
+      /* ── STEP 4 BACK / SUBMIT ── */
+      document
+        .getElementById("back4")
+        .addEventListener("click", () => setStep(3));
+      document.getElementById("submitBtn").addEventListener("click", () => {
+        const agreed = document.getElementById("agreeTerms").checked;
+        if (!agreed) {
+          document.getElementById("termsErr").classList.add("show");
+          return;
+        }
+        document.getElementById("termsErr").classList.remove("show");
 
-/* ── STEP 4 BACK / SUBMIT ── */
-document.getElementById('back4').addEventListener('click', () => setStep(3));
-document.getElementById('submitBtn').addEventListener('click', () => {
-  const agreed = document.getElementById('agreeTerms').checked;
-  if (!agreed) {
-    document.getElementById('termsErr').classList.add('show');
-    return;
-  }
-  document.getElementById('termsErr').classList.remove('show');
+        /* Simulate submission */
+        const btn = document.getElementById("submitBtn");
+        btn.textContent = "Submitting…";
+        btn.disabled = true;
 
-  /* Simulate submission */
-  const btn = document.getElementById('submitBtn');
-  btn.textContent = 'Submitting…';
-  btn.disabled = true;
+        setTimeout(() => {
+          /* generate ref */
+          const ref = "PS-" + Math.floor(100000 + Math.random() * 900000);
+          document.getElementById("successRef").textContent = ref;
 
-  setTimeout(() => {
-    /* generate ref */
-    const ref = 'PS-' + Math.floor(100000 + Math.random() * 900000);
-    document.getElementById('successRef').textContent = ref;
-
-    document.getElementById('formBody').classList.add('hidden');
-    document.querySelector('.step-indicator').style.display = 'none';
-    document.getElementById('successScreen').classList.add('show');
-  }, 1400);
-});
-</script>
-</body>
+          document.getElementById("formBody").classList.add("hidden");
+          document.querySelector(".step-indicator").style.display = "none";
+          document.getElementById("successScreen").classList.add("show");
+        }, 1400);
+      });
+    </script>
+  </body>
 </html>
